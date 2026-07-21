@@ -44,7 +44,7 @@ Car-Price-Prediction/
 - **Python 3**, **Flask** — backend & routing
 - **pandas / numpy** — data handling
 - **scikit-learn** — `OneHotEncoder` + `LinearRegression` pipeline
-- **HTML / Jinja2** — front-end templates
+- **HTML / Bootstrap** — front-end templates
 
 ## ⚙️ Methods
 
