@@ -86,5 +86,5 @@ http://127.0.0.1:5000/
 - Add input validation for unseen categories
 
 ## 👤 Author and Contact
-**Sanika Shinde**
+**Sanika Shinde** <br>
 📧 sanikadshinde264@gmail.com | 🔗 [linkedin.com/in/sanikadshinde264](https://www.linkedin.com/in/sanikadshinde264)
