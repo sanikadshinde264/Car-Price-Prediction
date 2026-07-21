@@ -1,80 +1,96 @@
-# Car Price Prediction
+# 🚗 Car Price Prediction
 
-A simple Flask web application that predicts the resale price of a used car based on its company, model name, manufacturing year, kilometers driven, and fuel type. Predictions are powered by a scikit-learn Linear Regression pipeline trained on a cleaned used-car dataset.
+Predicts the resale price of a used car based on its company, model, manufacturing year, kilometers driven, and fuel type. Built with Flask and a scikit-learn Linear Regression pipeline.
 
-## Features
+## 📌 Overview
 
-- Web form to select car company, model, year, kilometers driven, and fuel type
-- Predicts estimated resale price using a trained ML model
-- Built with Flask (Python) for the backend and HTML/Jinja2 templates for the frontend
+This project trains a regression model on a used-car dataset and serves predictions through a simple Flask web app. Users select a car's company, model, year, kms driven, and fuel type from a form and get an estimated resale price back instantly.
 
-## Tech Stack
+## ❓ Problem Statement
 
-- **Python 3**
-- **Flask** – web framework
-- **pandas / numpy** – data handling
-- **scikit-learn** – model pipeline (OneHotEncoder + LinearRegression)
+Used car pricing varies a lot and is hard to estimate consistently by hand — it depends on brand, model, age, mileage, and fuel type. This project builds a data-driven model that learns from past listings to give a quick, consistent price estimate for a given set of car details.
 
-## Project Structure
+## 📊 Dataset
+
+- **File:** `cleaned_Data8.csv`
+- **Rows:** 816 cleaned used-car listings
+- **Columns:**
+
+  | Column | Description |
+  |---|---|
+  | `name` | Car model name (463 unique) |
+  | `company` | Manufacturer/brand (25 unique) |
+  | `year` | Manufacturing year |
+  | `kms_driven` | Kilometers driven |
+  | `fuel_type` | Petrol / Diesel / LPG |
+  | `Price` | Target — resale price |
+
+## 🗂️ Directory Structure
 
 ```
-Car Price Prediction/
-├── Program1.py                     # Main Flask application
-├── cleaned_Data8.csv                # Cleaned dataset used for dropdowns & training
-├── LinearRegressionModel.pkl        # Trained scikit-learn pipeline
-├── retrain_model.py                 # Script to retrain the model (if needed)
+Car-Price-Prediction/
+├── Program1.py                     # Flask app
+├── cleaned_Data8.csv               # Dataset
+├── LinearRegressionModel.pkl       # Trained model
+├── README.md
 └── templates/
     ├── Home.html
     ├── CarPricePrediction.html
     └── CarPricePredictionResult.html
 ```
 
-## Setup & Installation
+## 🛠️ Tools & Technologies
 
-1. **Clone the repository**
-   ```bash
-   git clone <your-repo-url>
-   cd "Car Price Prediction"
-   ```
+- **Python 3**, **Flask** — backend & routing
+- **pandas / numpy** — data handling
+- **scikit-learn** — `OneHotEncoder` + `LinearRegression` pipeline
+- **HTML / Jinja2** — front-end templates
 
-2. **Install dependencies**
-   ```bash
-   pip install flask pandas numpy scikit-learn
-   ```
-   > If `pip` isn't recognized, use `python -m pip install flask pandas numpy scikit-learn` instead.
+## ⚙️ Methods
 
-3. **Run the app**
-   ```bash
-   python Program1.py
-   ```
+1. Load and clean the dataset (`cleaned_Data8.csv`)
+2. One-hot encode categorical features (`name`, `company`, `fuel_type`); pass numeric features (`year`, `kms_driven`) through
+3. Fit a `LinearRegression` pipeline on the encoded data
+4. Save the trained pipeline as `LinearRegressionModel.pkl`
+5. Load the pickle in Flask (`Program1.py`) and use `pipe.predict()` on user input to return a price
 
-4. **Open in browser**
-   Navigate to:
-   ```
-   http://127.0.0.1:5000/
-   ```
+## 💡 Key Insights
 
-## Usage
+- Brand and model are the strongest price drivers — luxury brands (BMW, Audi, Mercedes) price far above mass-market ones (Maruti, Hyundai, Tata)
+- Higher `kms_driven` and older `year` generally push price down
+- Fuel type (Petrol/Diesel) also shifts price depending on brand
+- Prices range widely (₹30,000 to ₹85 lakh), which limits accuracy of a simple linear model at the extremes
 
-1. Go to the Home page and click through to the prediction form.
-2. Select the car's company, model name, year, kilometers driven, and fuel type.
-3. Click **Predict** to see the estimated price.
+## 🖥️ Output
 
-## Retraining the Model
+- **Home page** → link to the prediction tool
+- **Prediction form** → select company, model, year, kms driven, fuel type
+- **Result page** → shows the predicted price
 
-If you get a version-mismatch error (e.g. `AttributeError` related to `OneHotEncoder`), it means the pickled model was trained with a different scikit-learn version than the one installed. Retrain it locally with:
+## ▶️ How to Run
 
 ```bash
-python retrain_model.py
+# 1. Install dependencies
+pip install flask pandas numpy scikit-learn
+
+# 2. Run the app
+python Program1.py
+
+# 3. Open in browser
+http://127.0.0.1:5000/
 ```
 
-This regenerates `LinearRegressionModel.pkl` using your currently installed scikit-learn version, keeping the same pipeline structure (OneHotEncoder + LinearRegression).
+## ✅ Results and Conclusion
 
-## Notes
+The Linear Regression pipeline gives a fast, interpretable baseline for used-car price estimation and captures broad trends well (brand, age, mileage effects). Accuracy is limited on a small dataset (816 rows) with a wide price range, so this is best treated as a learning/demo project rather than a production pricing tool.
 
-- Model accuracy is limited (simple linear regression on a small dataset) — this project is intended as a learning/demo exercise, not a production-grade pricing tool.
-- Make sure `cleaned_Data8.csv`, `LinearRegressionModel.pkl`, and the `templates/` folder stay in the same directory as `Program1.py`, since the app uses relative paths.
+## 🚀 Future Work
 
-## License
+- Try non-linear models (Random Forest, XGBoost) for better accuracy
+- Expand dataset with more listings and features (transmission, owner count, engine size, location)
+- Add input validation for unseen categories
 
-This project is open source and available for educational use.
+## 👤 Author and Contact
+
+**Author:** *Sanika Shinde*
+📧 [sanikadshinde264@gmail.com] | 🔗 [linkedin.com/in/sanikadshinde264]
