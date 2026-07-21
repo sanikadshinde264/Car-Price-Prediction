@@ -92,5 +92,5 @@ The Linear Regression pipeline gives a fast, interpretable baseline for used-car
 
 ## 👤 Author and Contact
 
-**Author:** *Sanika Shinde*
-📧 [sanikadshinde264@gmail.com] | 🔗 [linkedin.com/in/sanikadshinde264]
+**Sanika Shinde** <br>
+📧 [sanikadshinde264@gmail.com] | 🔗 [linkedin.com/in/sanikadshinde264] 
